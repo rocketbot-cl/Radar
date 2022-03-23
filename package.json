@@ -75,6 +75,27 @@
           {
             "type": "input",
             "description": {
+              "es": "URL para conectarse a Radar",
+              "en": "URL to connect with Radar",
+              "pr": "URL para se-conectar com Radar"
+            },
+            "placeholder": "https://api.somosradar.com/v1",
+            "title": {
+              "es": "Url:",
+              "en": "Url:",
+              "pr": "Url:"
+            },
+            "help": {
+              "es": "Por defecto url de produccion: https://api.somosradar.com/v1",
+              "en": "By defualt production URL: https://api.somosradar.com/v1",
+              "pr": "Por defeito URL de produção: https://api.somosradar.com/v1"
+            },  
+            "id": "url",
+            "css": "col-md-12"
+          },
+          {
+            "type": "input",
+            "description": {
               "es": "Nombre de la Sesión",
               "en": "Session Name",
               "pr": "Nome da Sessão"
@@ -233,7 +254,6 @@
               "en": "RUT number of the user",
               "pr": "RUT número do usuário"
             },
-            "remove_vars": true,
             "id": "rut",
             "css": "col-md-6"
           },
@@ -250,7 +270,6 @@
               "en": "User name",
               "pr": "Nome do usuário"
             },
-            "remove_vars": true,
             "id": "name",
             "css": "col-md-6"
           },
@@ -267,7 +286,6 @@
               "en": "User mail",
               "pr": "E-mail do usuário"
             },
-            "remove_vars": true,
             "id": "email",
             "css": "col-md-6"
           },
@@ -284,7 +302,6 @@
               "en": "SBIF number of the user's bank",
               "pr": "Número SBIF do banco do usuário"
             },
-            "remove_vars": true,
             "id": "sbif",
             "css": "col-md-6"
           },
@@ -301,7 +318,6 @@
               "en": "User bank account number",
               "pr": "Número da conta bancária do usuário"
             },
-            "remove_vars": true,
             "id": "accountNumber",
             "css": "col-md-6"
           },
@@ -318,7 +334,6 @@
               "en": "Message that will be sent with the transaction to the addressee",
               "pr": "Mensagem que será enviada com a transação ao destinatário"
             },
-            "remove_vars": true,
             "id": "messageToAdressee",
             "css": "col-md-6"
           },
@@ -335,7 +350,6 @@
               "en": "Amount to be sent in the transfer",
               "pr": "Valor a ser enviado na transferência"
             },
-            "remove_vars": true,
             "id": "amount",
             "css": "col-md-6"
           },
@@ -352,7 +366,6 @@
               "en": "Session Name",
               "pr": "Nome da Sessão"
             },
-            "remove_vars": true,
             "id": "session",
             "css": "col-md-6"
           },

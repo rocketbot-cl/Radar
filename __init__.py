@@ -35,6 +35,7 @@ if cur_path not in sys.path:
 
 global mod_radar_sessions
 
+
 SESSION_DEFAULT = "default"
 try:
     if not mod_radar_sessions:
@@ -53,11 +54,14 @@ try:
         email = GetParams("email")
         apitoken = GetParams("apitoken")
         name_session = GetParams("session")
-
+        url = GetParams("url")
+        
+        if url is "":
+            url = "https://api.somosradar.com/v1"
         json_data = {"email": email, "apiToken": apitoken}
         header = {'Content-Type': 'application/json'}
         response = requests.post(
-            'https://api.somosradar.com/v1/loginToken', json=json_data, headers=header)
+            (f'{url}'+'/loginToken'), json=json_data, headers=header)
 
         if response.status_code == 200:
             if name_session is None:
@@ -68,7 +72,7 @@ try:
             SetVar(var_, True)
             token = response.json()
             token = token["access_token_jwt"]
-            mod_radar_sessions[name_session] = token
+            mod_radar_sessions[name_session] = {"token" : token, "url" : url}
 
         else:
             raise Exception("Email o Token incorrectos")
@@ -78,16 +82,16 @@ try:
 
         name_session = GetParams("session")
         var_ = GetParams("var_")
-
+        
         if name_session is None:
             name_session = "default"
         if name_session == "":
             name_session = "default"
 
         header = {'Content-Type': 'application/json',
-                  "Authorization": f"Bearer {mod_radar_sessions[name_session]}"}
+                  "Authorization": f"Bearer {mod_radar_sessions[name_session]['token']}"}
         response = requests.get(
-            'https://api.somosradar.com/v1/payout/balance', headers=header)
+            (f"{mod_radar_sessions[name_session]['url']}"+"/balance"), headers=header)
 
         SetVar(var_, response.json())
 
@@ -133,7 +137,7 @@ try:
             'callbackUrl': 'https://webhook.site/callbackResponse',
         }
         response = requests.post(
-            'https://api.somosradar.com/v1/payout/tef', headers=headers, json=json_data)
+            (f'{mod_radar_sessions[name_session]["url"]}'+'/tef'), headers=headers, json=json_data)
         print(id_client)
         SetVar(var_, response.json())
 except Exception as e:
