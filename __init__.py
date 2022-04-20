@@ -34,6 +34,7 @@ if cur_path not in sys.path:
 
 
 global mod_radar_sessions
+global url
 
 
 SESSION_DEFAULT = "default"
@@ -55,13 +56,12 @@ try:
         apitoken = GetParams("apitoken")
         name_session = GetParams("session")
         url = GetParams("url")
-        
         if not url:
             url = "https://api.somosradar.com/v1"
         json_data = {"email": email, "apiToken": apitoken}
         header = {'Content-Type': 'application/json'}
         response = requests.post(
-            'https://api-sandbox.somosradar.com/v1/loginToken', json=json_data, headers=header)
+            url+'/loginToken', json=json_data, headers=header)
 
         if response.status_code == 200:
             if name_session is None:
@@ -91,10 +91,7 @@ try:
         header = {'Content-Type': 'application/json',
                   "Authorization": f"Bearer {mod_radar_sessions[name_session]['token']}"}
         response = requests.get(
-            'https://api-sandbox.somosradar.com/v1/balance', headers=header)
-        print(f"Bearer {mod_radar_sessions[name_session]['token']}")
-        print("------------------------------------------------------")
-        print(f"{mod_radar_sessions[name_session]['url']}"+"/balance")
+            url+'/payout/balance', headers=header)
 
         SetVar(var_, response.json())
 
@@ -120,7 +117,7 @@ try:
 
         headers = {
             'accept': 'application/json',
-            'Content-Type': 'application/json', 'Authorization': f'Bearer {mod_radar_sessions[name_session]}'}
+            'Content-Type': 'application/json', 'Authorization': f"Bearer {mod_radar_sessions[name_session]['token']}"}
 
         json_data = {
             'tef': {
@@ -140,8 +137,7 @@ try:
             'callbackUrl': 'https://webhook.site/callbackResponse',
         }
         response = requests.post(
-            f'{mod_radar_sessions[name_session]["url"]}'+'/tef', headers=headers, json=json_data)
-        print(id_client)
+            f'{mod_radar_sessions[name_session]["url"]}'+'/payout/tef', headers=headers, json=json_data)
         SetVar(var_, response.json())
 except Exception as e:
     print("\x1B[" + "31;40mAn error occurred\x1B[" + "0m")
