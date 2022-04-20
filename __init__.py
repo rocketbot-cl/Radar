@@ -56,12 +56,12 @@ try:
         name_session = GetParams("session")
         url = GetParams("url")
         
-        if url is "":
+        if not url:
             url = "https://api.somosradar.com/v1"
         json_data = {"email": email, "apiToken": apitoken}
         header = {'Content-Type': 'application/json'}
         response = requests.post(
-            (f'{url}'+'/loginToken'), json=json_data, headers=header)
+            'https://api-sandbox.somosradar.com/v1/loginToken', json=json_data, headers=header)
 
         if response.status_code == 200:
             if name_session is None:
@@ -91,7 +91,10 @@ try:
         header = {'Content-Type': 'application/json',
                   "Authorization": f"Bearer {mod_radar_sessions[name_session]['token']}"}
         response = requests.get(
-            (f"{mod_radar_sessions[name_session]['url']}"+"/balance"), headers=header)
+            'https://api-sandbox.somosradar.com/v1/balance', headers=header)
+        print(f"Bearer {mod_radar_sessions[name_session]['token']}")
+        print("------------------------------------------------------")
+        print(f"{mod_radar_sessions[name_session]['url']}"+"/balance")
 
         SetVar(var_, response.json())
 
@@ -137,7 +140,7 @@ try:
             'callbackUrl': 'https://webhook.site/callbackResponse',
         }
         response = requests.post(
-            (f'{mod_radar_sessions[name_session]["url"]}'+'/tef'), headers=headers, json=json_data)
+            f'{mod_radar_sessions[name_session]["url"]}'+'/tef', headers=headers, json=json_data)
         print(id_client)
         SetVar(var_, response.json())
 except Exception as e:
