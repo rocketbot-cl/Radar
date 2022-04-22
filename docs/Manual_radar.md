@@ -40,7 +40,7 @@ Ingrese los datos para una nueva transaccion
 | --- | --- | --- |
 |RUT|Numero RUT del usuario|15380535-0|
 |Nombre|Nombre del usuario|Bruce Wayne|
-|E-mail|E-Mail del usuario|user@rocketbot.com|
+|E-mail|E-Mail del usuario|bruce@wayne.com|
 |Numero SBIF|Numero SBIF del banco del usuario|037|
 |Numero de Cuenta|Numero de la cuenta bancaria del usuario|3680210608|
 |Mensaje para el destinatario|Mensaje que sera enviado con la transaccion al destinatario|Pago correspondiente a semana 41|
