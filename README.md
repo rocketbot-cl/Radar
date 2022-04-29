@@ -4,7 +4,7 @@
 
 # Radar
   
-Módulo para conectarse a Radar  
+Module to connect to Radar  
 
 ## How to install this module
   
