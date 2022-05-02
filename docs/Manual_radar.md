@@ -6,12 +6,10 @@
   
 Módulo para conectarse a Radar  
   
-![banner](/docs/imgs/Banner_Radar.png)
+![banner](imgs/Banner_radar.jpg)
 ## Como instalar este módulo
   
 __Descarga__ e __instala__ el contenido en la carpeta 'modules' en la ruta de rocketbot.  
-
-
 
 ## Descripción de los comandos
 
